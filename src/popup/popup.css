@@ -31,7 +31,6 @@ h3 {
   color: #ccc;
 }
 
-/* Status bar */
 .status-bar {
   display: flex;
   align-items: center;
@@ -70,7 +69,6 @@ h3 {
   font-weight: 500;
 }
 
-/* Stats */
 .stats {
   background: #16213e;
   border-radius: 8px;
@@ -93,7 +91,6 @@ h3 {
   color: #64b5f6;
 }
 
-/* Pages collected */
 .pages-collected {
   margin-bottom: 12px;
 }
@@ -126,7 +123,6 @@ summary {
   font-size: 11px;
 }
 
-/* Controls */
 .controls {
   display: flex;
   flex-direction: column;
@@ -173,7 +169,6 @@ summary {
   color: #64b5f6;
 }
 
-/* Download area */
 #download-area {
   background: #16213e;
   border-radius: 8px;

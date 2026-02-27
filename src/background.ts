@@ -1,17 +1,11 @@
 import type { CrowdinPhrase, CrowdinResponse, Message } from "./types";
 import { generatePropertiesFiles, filePathToPrefix } from "./generator";
 
-// --- State ---
 let listening = false;
 let collectedPhrases: Map<number, CrowdinPhrase> = new Map(); // keyed by phrase id
 let pagesCollected: Set<number> = new Set();
 let totalPages: number | null = null;
 let totalFound: number | null = null;
-
-// --- Network interception via chrome.webRequest + fetch override ---
-// We use a content script approach via declarativeNetRequest or devtools,
-// but the most reliable way for reading response bodies is via a content script
-// that hooks fetch/XHR. The background script coordinates state.
 
 function getStatus(): Extract<Message, { type: "STATUS" }> {
   const fileGroups = new Set<string>();
@@ -46,7 +40,6 @@ function handleCrowdinData(data: CrowdinResponse["data"]) {
   );
 }
 
-// Listen to messages from popup and content script
 chrome.runtime.onMessage.addListener(
   (
     message: Message | { type: "CROWDIN_DATA"; data: CrowdinResponse["data"] },
@@ -86,11 +79,10 @@ chrome.runtime.onMessage.addListener(
       sendResponse({ ok: true });
     }
 
-    return true; // keep channel open for async sendResponse
+    return true;
   },
 );
 
-// Update badge when data changes
 setInterval(() => {
   const count = collectedPhrases.size;
   chrome.action.setBadgeText({ text: count > 0 ? String(count) : "" });
