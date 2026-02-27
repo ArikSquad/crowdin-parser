@@ -15,6 +15,7 @@ export function filePathToFilename(filePath: string): string {
 function escapePropertiesValue(value: string): string {
   return value
     .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
     .replace(/\n/g, "\\n")
     .replace(/\r/g, "\\r")
     .replace(/\t/g, "\\t");
@@ -62,13 +63,13 @@ export function generatePropertiesFiles(
       );
 
       if (translationValue === "") {
-        englishLines.push(`${key}=${englishValue}`);
+        englishLines.push(`${key}="${englishValue}"`);
         translationLines.push(
-          `#${key}=${translationValue} # No translation available`,
+          `#${key}="${translationValue}" # No translation available`,
         );
       } else {
-        englishLines.push(`${key}=${englishValue}`);
-        translationLines.push(`${key}=${translationValue}`);
+        englishLines.push(`${key}="${englishValue}"`);
+        translationLines.push(`${key}="${translationValue}"`);
       }
     });
 
