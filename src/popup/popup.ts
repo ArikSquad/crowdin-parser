@@ -41,7 +41,7 @@ function updateUI(status: Extract<Message, { type: "STATUS" }>) {
     pagesCollectedContainer.style.display = "none";
   }
 
-  btnToggle.textContent = status.listening ? "Stop" : "Start";
+  btnToggle.textContent = status.listening ? "Stop Listening" : "Start Listening";
   btnToggle.classList.toggle("active", status.listening);
 
   btnGenerate.disabled = status.phrasesCount === 0;
@@ -112,7 +112,7 @@ function showFiles(files: GeneratedFile[]) {
 }
 
 function downloadFile(file: GeneratedFile) {
-  const blob = new Blob([file.content], { type: "text/plain" });
+  const blob = new Blob([file.content], { type: "text/plain;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
