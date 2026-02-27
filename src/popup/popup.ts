@@ -41,7 +41,9 @@ function updateUI(status: Extract<Message, { type: "STATUS" }>) {
     pagesCollectedContainer.style.display = "none";
   }
 
-  btnToggle.textContent = status.listening ? "Stop Listening" : "Start Listening";
+  btnToggle.textContent = status.listening
+    ? "Stop Listening"
+    : "Start Listening";
   btnToggle.classList.toggle("active", status.listening);
 
   btnGenerate.disabled = status.phrasesCount === 0;

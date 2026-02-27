@@ -61,8 +61,15 @@ export function generatePropertiesFiles(
         phrase.top_suggestion_text || "",
       );
 
-      englishLines.push(`${key}=${englishValue}`);
-      translationLines.push(`${key}=${translationValue}`);
+      if (translationValue === "") {
+        englishLines.push(`${key}=${englishValue}`);
+        translationLines.push(
+          `#${key}=${translationValue} # No translation available`,
+        );
+      } else {
+        englishLines.push(`${key}=${englishValue}`);
+        translationLines.push(`${key}=${translationValue}`);
+      }
     });
 
     files.push({
