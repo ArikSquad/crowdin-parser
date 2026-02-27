@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crowdin Parser</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crowdin Parser</h1>
+
+      <div class="status-bar" id="status-bar">
+        <span class="dot" id="status-dot"></span>
+        <span id="status-text">Idle</span>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat-row">
+          <span class="stat-label">Phrases:</span>
+          <span class="stat-value" id="phrases-count">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Pages:</span>
+          <span class="stat-value" id="pages-info">0 / ?</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total found:</span>
+          <span class="stat-value" id="total-found">—</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">File groups:</span>
+          <span class="stat-value" id="file-groups">—</span>
+        </div>
+      </div>
+
+      <div
+        class="pages-collected"
+        id="pages-collected-container"
+        style="display: none"
+      >
+        <details>
+          <summary>Pages collected</summary>
+          <div id="pages-collected-list" class="pages-list"></div>
+        </details>
+      </div>
+
+      <div class="controls">
+        <button id="btn-toggle" class="btn btn-primary">Start Listening</button>
+        <button id="btn-clear" class="btn btn-secondary">Clear Data</button>
+        <button id="btn-generate" class="btn btn-success" disabled>
+          Generate .properties
+        </button>
+      </div>
+
+      <div id="download-area" style="display: none">
+        <h3>Generated Files</h3>
+        <div id="file-list"></div>
+      </div>
+    </div>
+
+    <script type="module" src="popup.ts"></script>
+  </body>
+</html>

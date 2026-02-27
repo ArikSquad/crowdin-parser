@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Crowdin Parser",
+  "description": "Intercepts Crowdin network requests and generates .properties files",
+  "version": "1.0.0",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://*.crowdin.com/*"],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.crowdin.com/*"],
+      "js": ["src/content-main.ts"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.crowdin.com/*"],
+      "js": ["src/content.ts"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ]
+}
